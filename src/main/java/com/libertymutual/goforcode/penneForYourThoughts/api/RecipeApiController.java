@@ -4,7 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
+=======
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+>>>>>>> 95102763c654831a474102a61635bfbd08c91e20
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +45,7 @@ public class RecipeApiController {
 		return recipeRepo.findAll();
 
 	}
+<<<<<<< HEAD
 
 	// Get recipe by id
 	@GetMapping("{id}")
@@ -52,5 +58,13 @@ public class RecipeApiController {
 		return recipe;
 
 	}
+=======
+	
+	@PostMapping("") // requestbody will turn the json into that object
+	public Recipe create(@RequestBody Recipe recipe) {
+		return recipeRepo.save(recipe);
+	}
+	
+>>>>>>> 95102763c654831a474102a61635bfbd08c91e20
 
 }

@@ -25,6 +25,7 @@ public class Instruction {
 	@Column(length=500, nullable=false)
 	private String step;
 	
+	// GETTERS AND SETTERS
 	@ManyToOne
 	private Recipe recipe;
 

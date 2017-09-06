@@ -1,5 +1,6 @@
 package com.libertymutual.goforcode.penneForYourThoughts.models;
 
+import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
-		generator=ObjectIdGenerators.PropertyGenerator.class,
-		property="id"
-	)
-
+		generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Entity
 public class Ingredient {
 
@@ -33,6 +31,8 @@ public class Ingredient {
 	
 	@Column (length=10)
 	private double quantity;
+
+	// GETTERS AND SETTERS
 	
 	@ManyToOne
 	private Recipe recipe;
