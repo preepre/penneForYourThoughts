@@ -31,5 +31,7 @@ public class RecipeApiController {
 		return recipeRepo.findAll();
 
 	}
+	
+	
 
 }
