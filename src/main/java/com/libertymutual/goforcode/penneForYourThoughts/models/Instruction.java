@@ -44,8 +44,6 @@ public class Instruction {
 	public void setStep(String step) {
 		this.step = step;
 	}
-<<<<<<< HEAD
-=======
 
 	public Recipe getRecipe() {
 		return recipe;
@@ -54,6 +52,5 @@ public class Instruction {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
->>>>>>> f20c487745bd9bcb8b83b87ece0138f15c08c4a6
 	
 }
