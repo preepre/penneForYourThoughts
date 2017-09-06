@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,19 +28,29 @@ public class RecipeApiController {
 		this.recipeRepo = recipeRepo;
 		this.ingredientRepo = ingredientRepo;
 		this.instructionRepo = instructionRepo;
-		
+
 		recipeRepo.save(new Recipe("lasagna", "A layered pasta with tomato sauce", 74));
 		recipeRepo.save(new Recipe("frozen pesto pizza", "A pizza with pesto sauce", 9));
-		
 
 	}
 
+	// Get all recipes
 	@GetMapping("")
 	public List<Recipe> getAll() {
 		return recipeRepo.findAll();
 
 	}
-	
-	
+
+	// Get recipe by id
+	@GetMapping("{id}")
+	public Recipe getOne(@PathVariable long id) throws RecipeNotFoundException {
+		Recipe recipe = recipeRepo.findOne(id);
+		if (recipe == null) {
+			throw new RecipeNotFoundException();
+		}
+		
+		return recipe;
+
+	}
 
 }
