@@ -3,8 +3,6 @@ package com.libertymutual.goforcode.penneForYourThoughts.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +23,18 @@ public class Recipe {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@Column(length=100, nullable=false)
 	private String title;
 	
+	@Column(length=250, nullable=false)
 	private String description;
 	
+	@Column(length=50, nullable=false)
 	private int minutes;
+	
+	//need mappings
+	//private HashSet<Ingredient> ingredients;
+	//private HashSet<Instruction> instructions;
 
 	public Long getId() {
 		return id;
@@ -63,8 +68,5 @@ public class Recipe {
 		this.minutes = minutes;
 	}
 	
-	//need mappings
-	//private HashSet<Ingredient> ingredients;
-	//private HashSet<Instruction> instructions;
 
 }
