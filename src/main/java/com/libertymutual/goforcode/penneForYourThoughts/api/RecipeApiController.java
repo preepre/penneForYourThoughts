@@ -28,6 +28,8 @@ public class RecipeApiController {
 		this.ingredientRepo = ingredientRepo;
 		this.instructionRepo = instructionRepo;
 		
+		recipeRepo.save(new Recipe("lasagna", "A layered pasta with tomato sauce", 74));
+		recipeRepo.save(new Recipe("frozen pesto pizza", "A pizza with pesto sauce", 9));
 		
 
 	}
