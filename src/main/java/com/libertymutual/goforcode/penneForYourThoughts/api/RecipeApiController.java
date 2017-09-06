@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
+import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
+import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 
 @RestController
@@ -16,13 +18,17 @@ import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepos
 public class RecipeApiController {
 
 	private RecipeRepository recipeRepo;
-	// private IngredientRepository ingredientRepo;
-	// private InstructionRepository instructionRepo;
+	private IngredientRepository ingredientRepo;
+	private InstructionRepository instructionRepo;
 
-	public RecipeApiController(RecipeRepository recipeRepo) {
+	public RecipeApiController(RecipeRepository recipeRepo, IngredientRepository ingredientRepo,
+			InstructionRepository instructionRepo) {
 
 		this.recipeRepo = recipeRepo;
-		// this.
+		this.ingredientRepo = ingredientRepo;
+		this.instructionRepo = instructionRepo;
+		
+		
 
 	}
 
