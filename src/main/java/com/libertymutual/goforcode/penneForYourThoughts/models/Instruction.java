@@ -24,4 +24,22 @@ public class Instruction {
 	@Column(length=500, nullable=false)
 	private String step;
 	
+	// GETTERS AND SETTERS
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
+	
 }

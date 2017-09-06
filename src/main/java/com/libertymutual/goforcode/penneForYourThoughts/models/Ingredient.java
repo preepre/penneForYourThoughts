@@ -1,19 +1,12 @@
 package com.libertymutual.goforcode.penneForYourThoughts.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
-		generator=ObjectIdGenerators.PropertyGenerator.class,
-		property="id"
-	)
-
+		generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Entity
 public class Ingredient {
 
@@ -32,5 +25,39 @@ public class Ingredient {
 	
 	@Column (length=10)
 	private double quantity;
+
+	// GETTERS AND SETTERS
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFoodItem() {
+		return foodItem;
+	}
+
+	public void setFoodItem(String foodItem) {
+		this.foodItem = foodItem;
+	}
+
+	public String getUnitOfMeasure() {
+		return unitOfMeasure;
+	}
+
+	public void setUnitOfMeasure(String unitOfMeasure) {
+		this.unitOfMeasure = unitOfMeasure;
+	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
 	
 }
