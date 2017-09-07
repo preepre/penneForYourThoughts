@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,10 +38,10 @@ public class Recipe {
 	private int minutes;
 	
 	//need mappings
-	@OneToMany(mappedBy="recipe")
+	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
 	private Set<Ingredient> ingredients;
 	
-	@OneToMany(mappedBy="recipe")
+	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
 	private Set<Instruction> instructions;
 	
 	public Recipe() {}
