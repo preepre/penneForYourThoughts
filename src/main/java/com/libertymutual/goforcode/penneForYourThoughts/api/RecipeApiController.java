@@ -30,8 +30,6 @@ public class RecipeApiController {
 		this.ingredientRepo = ingredientRepo;
 		this.instructionRepo = instructionRepo;
 		
-		
-
 	}
 
 	@GetMapping("")

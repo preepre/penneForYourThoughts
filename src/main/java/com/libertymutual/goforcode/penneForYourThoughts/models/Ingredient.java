@@ -31,6 +31,16 @@ public class Ingredient {
 	
 	@Column (length=10)
 	private double quantity;
+	
+	
+	public Ingredient() {}
+	
+	public Ingredient (String foodItem, String unitOfMeasure, double quantity) {
+		this.foodItem = foodItem;
+		this.unitOfMeasure = unitOfMeasure;
+		this.quantity = quantity;
+	}
+	
 
 	// GETTERS AND SETTERS
 	
