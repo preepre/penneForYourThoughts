@@ -1,5 +1,6 @@
 package com.libertymutual.goforcode.penneForYourThoughts.api;
 
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,6 @@ import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepos
 
 @RestController
 @RequestMapping("/api/recipes/{id}/ingredients")
-
 public class IngredientApiController {
 
 	private RecipeRepository recipeRepo;
