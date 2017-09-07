@@ -30,16 +30,12 @@ public class IngredientApiController {
 		
 	}
 	
-	@PostMapping("/{id}/ingredients")
-	public Recipe associateARecipe(@PathVariable long id, @RequestBody Ingredient ingredient) {
+	@PostMapping("")
+	public Recipe createIngredientForARecipe(@PathVariable long id, @RequestBody Ingredient ingredient) {
 		Recipe recipe = recipeRepo.findOne(id);
-		ingredient = ingredientRepo.findOne(ingredient.getId());
-		
 		ingredient.setRecipe(recipe);
+		ingredient = ingredientRepo.save(ingredient);
 		recipe.addIngredient(ingredient);
-		ingredientRepo.save(ingredient);
-		recipeRepo.save(recipe);
-		
 		return recipe;
 	}
 	
