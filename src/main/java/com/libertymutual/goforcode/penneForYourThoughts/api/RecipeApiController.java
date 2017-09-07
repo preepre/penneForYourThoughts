@@ -64,17 +64,17 @@ public class RecipeApiController {
 		return recipeRepo.save(recipe);
 	}
 	
-//	//Delete recipe by id
-//	@DeleteMapping("{id}")
-//	public Recipe delete(@PathVariable long id) {
-//		try {
-//			Recipe recipe = recipeRepo.findOne(id);
-//			recipeRepo.delete(id);
-//			return recipe;
-//		} catch (EmptyResultDataAccessException erdae) {
-//			return null;
-//		}
-//	} 
+	//Delete recipe by id
+	@DeleteMapping("{id}")
+	public Recipe delete(@PathVariable long id) {
+		try {
+			Recipe recipe = recipeRepo.findOne(id);
+			recipeRepo.delete(id);
+			return recipe;
+		} catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
+	} 
 	
 	@PutMapping("{id}")
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
