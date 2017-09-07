@@ -1,5 +1,7 @@
 package com.libertymutual.goforcode.penneForYourThoughts.api;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +30,8 @@ public class IngredientApiController {
 		this.ingredientRepo = ingredientRepo;
 		this.instructionRepo = instructionRepo;
 		
+		
+		
 	}
 	
 	@PostMapping("")
@@ -39,5 +43,16 @@ public class IngredientApiController {
 		return recipe;
 	}
 	
+	@DeleteMapping("{ing_id}")
+	public Ingredient deleteIngredientForARecipe(@PathVariable long ing_id) {
+		try {
+			Ingredient ingredient = ingredientRepo.findOne(ing_id);
+			ingredientRepo.delete(ing_id);
+			return ingredient;
+		}
+		catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
+	}
 	
 }
