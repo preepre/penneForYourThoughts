@@ -3,9 +3,12 @@ package com.libertymutual.goforcode.penneForYourThoughts.api;
 import java.util.HashSet;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +63,27 @@ public class RecipeApiController {
 	public Recipe create(@RequestBody Recipe recipe) {
 		return recipeRepo.save(recipe);
 	}
+	
+//	//Delete recipe by id
+//	@DeleteMapping("{id}")
+//	public Recipe delete(@PathVariable long id) {
+//		try {
+//			Recipe recipe = recipeRepo.findOne(id);
+//			recipeRepo.delete(id);
+//			return recipe;
+//		} catch (EmptyResultDataAccessException erdae) {
+//			return null;
+//		}
+//	} 
+	
+	@PutMapping("{id}")
+	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
+		recipe.setId(id);
+		return recipeRepo.save(recipe);
+	
+	}
+	
+
 	
 
 }
