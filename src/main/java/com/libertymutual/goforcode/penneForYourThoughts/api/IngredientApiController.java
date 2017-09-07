@@ -14,7 +14,7 @@ import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepos
 
 
 @RestController
-@RequestMapping("/api/recipes/{id}/ingredients")
+@RequestMapping("/api/recipes")
 public class IngredientApiController {
 
 	private RecipeRepository recipeRepo;
@@ -30,7 +30,7 @@ public class IngredientApiController {
 		
 	}
 	
-	@PostMapping("")
+	@PostMapping("/{id}/ingredients")
 	public Recipe associateARecipe(@PathVariable long id, @RequestBody Ingredient ingredient) {
 		Recipe recipe = recipeRepo.findOne(id);
 		ingredient = ingredientRepo.findOne(ingredient.getId());
