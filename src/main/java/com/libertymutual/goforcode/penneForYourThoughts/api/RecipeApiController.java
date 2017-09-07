@@ -1,7 +1,6 @@
 package com.libertymutual.goforcode.penneForYourThoughts.api;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,12 +37,11 @@ public class RecipeApiController {
 		recipeRepo.save(new Recipe("frozen pesto pizza", "A pizza with pesto sauce", 9));
 
 	}
-
+	
 	// Get all recipes
 	@GetMapping("")
 	public List<Recipe> getAll() {
 		return recipeRepo.findAll();
-
 	}
 
 	// Get recipe by id
@@ -52,13 +50,10 @@ public class RecipeApiController {
 		Recipe recipe = recipeRepo.findOne(id);
 		if (recipe == null) {
 			throw new RecipeNotFoundException();
-		}
-		
+		}	
 		return recipe;
-
 	}
 
-	
 	@PostMapping("") // requestbody will turn the json into that object
 	public Recipe create(@RequestBody Recipe recipe) {
 		return recipeRepo.save(recipe);
@@ -80,10 +75,5 @@ public class RecipeApiController {
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
 		recipe.setId(id);
 		return recipeRepo.save(recipe);
-	
 	}
-	
-
-	
-
 }
