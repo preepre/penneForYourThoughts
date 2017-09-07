@@ -1,35 +1,52 @@
 package com.libertymutual.goforcode.penneForYourThoughts.api;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
+
 import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
+import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 
 @RestController
-@RequestMapping("/recipes/{id}/instructions")
+@RequestMapping("api/recipes/{id}/instructions")
 public class InstructionApiController {
 
 	private RecipeRepository recipeRepo;
-	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
 
-	public InstructionApiController(RecipeRepository recipeRepo, IngredientRepository ingredientRepo,
+	public InstructionApiController(RecipeRepository recipeRepo,
 			InstructionRepository instructionRepo) {
 
 		this.recipeRepo = recipeRepo;
-		this.ingredientRepo = ingredientRepo;
 		this.instructionRepo = instructionRepo;
 		
 	}
 	
-	@PostMapping("") // requestbody will turn the json into that object
-	public Instruction create(@PathVariable Instruction instruction) {
-		return instructionRepo.save(instruction);
+	@PostMapping("")
+	public Recipe createIngredientForARecipe(@PathVariable long id, @RequestBody Instruction instruction) {
+		Recipe recipe = recipeRepo.findOne(id);
+		instruction.setRecipe(recipe);
+		
+		instruction = instructionRepo.save(instruction);
+		recipe.addInstruction(instruction);
+		return recipe;
 	}
+	
+	@DeleteMapping("{ins_id}")
+	public Instruction delete(@PathVariable long ins_id) {
+		try {
+			Instruction step = instructionRepo.findOne(ins_id);
+			instructionRepo.delete(ins_id);
+			return step;
+		} catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
+	} 
 }
