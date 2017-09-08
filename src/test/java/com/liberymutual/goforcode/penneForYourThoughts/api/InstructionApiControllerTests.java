@@ -12,6 +12,7 @@ import com.libertymutual.goforcode.penneForYourThoughts.repositories.Instruction
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.api.InstructionApiController;
 import com.libertymutual.goforcode.penneForYourThoughts.api.RecipeNotFoundException;
+import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
 
 public class InstructionApiControllerTests {
@@ -64,6 +65,22 @@ public class InstructionApiControllerTests {
 		//assert
 		assertThat(actual).isNull();
 		verify(instructionRepo).findOne(8l);
+	}
+	
+	@Test
+	public void test_instruction_gets_updated_from_repo() {
+		//arrange
+		Instruction instruction = new Instruction();
+		Recipe recipe = new Recipe();
+		when(instructionRepo.save(instruction)).thenReturn(instruction);
+		when(recipeRepo.findOne(1l)).thenReturn(recipe);
+		Recipe actual = controller.createInstructionForARecipe(1l, instruction);
+
+		//act
+		Instruction actualInstruction = controller.updateInstruction(instruction, 99l, 1l);
+		
+		//assert
+		assertThat(actualInstruction.getId()).isEqualTo(99l);
 	}
 	
 }

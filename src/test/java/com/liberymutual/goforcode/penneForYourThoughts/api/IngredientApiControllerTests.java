@@ -68,6 +68,22 @@ public class IngredientApiControllerTests {
 		verify(ingredientRepo).findOne(8l);
 	}
 	
+	@Test
+	public void test_ingredient_gets_updated_from_repo() {
+		//arrange
+		Ingredient ingredient = new Ingredient();
+		Recipe recipe = new Recipe();
+		when(ingredientRepo.save(ingredient)).thenReturn(ingredient);
+		when(recipeRepo.findOne(1l)).thenReturn(recipe);
+		Recipe actual = controller.createIngredientForARecipe(1l, ingredient);
+
+		//act
+		Ingredient actualIngredient = controller.updateIngredient(ingredient, 99l, 1l);
+		
+		//assert
+		assertThat(actualIngredient.getId()).isEqualTo(99l);
+	}
+	
 	/* THIS IS A TEST FOR AN OPTIONAL METHOD. PLEASE IGNORE.
 	@Test
 	public void test_getAll_returns_all_ingredients_for_specified_recipe() {
