@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,10 +41,10 @@ public class Recipe {
 	
 	//need mappings
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
-	private ArrayList<Ingredient> ingredients;
+	private Set<Ingredient> ingredients;
 	
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
-	private ArrayList<Instruction> instructions;
+	private Set<Instruction> instructions;
 	
 	public Recipe() {}
 	
@@ -55,14 +56,14 @@ public class Recipe {
 	
 	public void addInstruction(Instruction instruction) {
 		if(instructions == null) {
-			instructions = new ArrayList<Instruction>();
+			instructions = new LinkedHashSet<Instruction>();
 		}
 		instructions.add(instruction);
 	}
 
 	public void addIngredient(Ingredient ingredient) {
 		if(ingredients == null) {
-			ingredients = new ArrayList<Ingredient>();
+			ingredients = new LinkedHashSet<Ingredient>();
 		}
 		ingredients.add(ingredient);
 	}
@@ -99,19 +100,19 @@ public class Recipe {
 		this.minutes = minutes;
 	}
 
-	public ArrayList<Ingredient> getIngredients() {
+	public Set<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(ArrayList<Ingredient> ingredients) {
+	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
-	public ArrayList<Instruction> getInstructions() {
+	public Set<Instruction> getInstructions() {
 		return instructions;
 	}
 
-	public void setInstructions(ArrayList<Instruction> instructions) {
+	public void setInstructions(Set<Instruction> instructions) {
 		this.instructions = instructions;
 	}
 	

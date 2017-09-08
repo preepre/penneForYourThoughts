@@ -3,7 +3,7 @@ package com.liberymutual.goforcode.penneForYourThoughts.models;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,11 +41,11 @@ public class RecipeModelTests {
     public void test_add_Instruction() {
 		//arrange
 		Instruction ins = new Instruction();
-		ArrayList<Instruction> instructions = new ArrayList<Instruction>();
+		Set<Instruction> instructions = new LinkedHashSet<Instruction>();
 		instructions.add(ins);
 		
 		//act
-		ArrayList<Instruction> actualInstructions = new ArrayList<Instruction>();
+		Set<Instruction> actualInstructions = new LinkedHashSet<Instruction>();
 		Recipe recipe = new Recipe();
 		recipe.addInstruction(ins);
 		actualInstructions = recipe.getInstructions();
@@ -58,11 +58,11 @@ public class RecipeModelTests {
     public void test_add_Ingredients() {
 		//arrange
 		Ingredient ing = new Ingredient();
-		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		Set<Ingredient> ingredients = new LinkedHashSet<Ingredient>();
 		ingredients.add(ing);
 	
 		//act
-		ArrayList<Ingredient> actualIngredients = new ArrayList<Ingredient>();
+		Set<Ingredient> actualIngredients = new LinkedHashSet<Ingredient>();
 		Recipe recipe = new Recipe();
 		recipe.addIngredient(ing);
 		actualIngredients = recipe.getIngredients();
