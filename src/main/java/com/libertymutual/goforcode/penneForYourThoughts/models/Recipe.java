@@ -3,10 +3,7 @@ package com.libertymutual.goforcode.penneForYourThoughts.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,13 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @JsonIdentityInfo(
 		generator=ObjectIdGenerators.PropertyGenerator.class,
-		property="id"
-	)
+		property="id")
 
 @Entity
 public class Recipe {
@@ -28,7 +23,6 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
 	
 	@Column(length=100, nullable=false)
 	private String title;
@@ -39,7 +33,6 @@ public class Recipe {
 	@Column(length=50, nullable=false)
 	private int minutes;
 	
-	//need mappings
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
 	private Set<Ingredient> ingredients;
 	
@@ -115,6 +108,4 @@ public class Recipe {
 	public void setInstructions(Set<Instruction> instructions) {
 		this.instructions = instructions;
 	}
-	
-
 }

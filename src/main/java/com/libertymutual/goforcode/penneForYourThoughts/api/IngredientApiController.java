@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 
 @RestController
@@ -25,15 +24,10 @@ public class IngredientApiController {
 
 	private RecipeRepository recipeRepo;
 	private IngredientRepository ingredientRepo;
-	private InstructionRepository instructionRepo;
-
-	public IngredientApiController(RecipeRepository recipeRepo, IngredientRepository ingredientRepo,
-			InstructionRepository instructionRepo) {
-
+	
+	public IngredientApiController(RecipeRepository recipeRepo, IngredientRepository ingredientRepo) {
 		this.recipeRepo = recipeRepo;
 		this.ingredientRepo = ingredientRepo;
-		this.instructionRepo = instructionRepo;
-
 	}
 
 	@PostMapping("")
@@ -50,7 +44,6 @@ public class IngredientApiController {
 	@GetMapping("")
 	public List<Ingredient> getAll() {
 		return ingredientRepo.findAll();
-
 	}
 
 	@DeleteMapping("{ing_id}")
@@ -64,3 +57,4 @@ public class IngredientApiController {
 		}
 	}
 }
+

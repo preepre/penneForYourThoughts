@@ -10,13 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
-
-
 import com.libertymutual.goforcode.penneForYourThoughts.api.IngredientApiController;
 import com.libertymutual.goforcode.penneForYourThoughts.api.RecipeNotFoundException;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
@@ -25,37 +21,37 @@ public class IngredientApiControllerTests {
 
 	private RecipeRepository recipeRepo;
 	private IngredientRepository ingredientRepo;
-	private InstructionRepository instructionRepo;
 	private IngredientApiController controller;
 	
 	@Before
 	public void setUp() {
 		recipeRepo = mock(RecipeRepository.class);
 		ingredientRepo = mock(IngredientRepository.class);
-		instructionRepo = mock(InstructionRepository.class);
-		controller = new IngredientApiController(recipeRepo, ingredientRepo, instructionRepo);
+		controller = new IngredientApiController(recipeRepo, ingredientRepo);
 	}
 	
 	@Test
 	public void test_ingredient_gets_created_and_added_to_repo() {
+		//arrange
 		Ingredient ingredient = new Ingredient();
 		Recipe recipe = new Recipe();
 		when(ingredientRepo.save(ingredient)).thenReturn(ingredient);
 		when(recipeRepo.findOne(1l)).thenReturn(recipe);
-		
+		//act
 		Recipe actual = controller.createIngredientForARecipe(1l, ingredient);
-		
+		//assert
 		assertThat(recipe).isSameAs(actual);
 		
 	}
 	
 	@Test
 	public void test_ingredient_gets_deleted_from_repo() {
+		//arrange
 		Ingredient ingredient = new Ingredient();
 		when(ingredientRepo.findOne(2l)).thenReturn(ingredient);
-		
+		//act
 		Ingredient actual = controller.deleteIngredientForARecipe(2l);
-		
+		//assert
 		assertThat(ingredient).isSameAs(actual);
 		verify(ingredientRepo).delete(2l);
 		verify(ingredientRepo).findOne(2l);

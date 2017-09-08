@@ -1,35 +1,14 @@
 package com.liberymutual.goforcode.penneForYourThoughts.models;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import java.util.*;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
-
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 
 public class RecipeModelTests {
-	
-	
-	private RecipeRepository recipeRepo;
-	private IngredientRepository ingredientRepo;
-	private InstructionRepository instructionRepo;
-
-	@Before
-	public void setUp() {
-		recipeRepo = mock(RecipeRepository.class);
-		ingredientRepo = mock(IngredientRepository.class);
-		instructionRepo = mock(InstructionRepository.class);
-	}
-	
 	@Test
     public void test_all_gets_and_sets() {
         new BeanTester().testBean(Recipe.class);

@@ -20,10 +20,8 @@ import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientR
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
 
-
 public class RecipeApiControllerTests {
 
-	
 	private RecipeRepository recipeRepo;
 	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
@@ -42,10 +40,8 @@ public class RecipeApiControllerTests {
 		//arrange
 		Recipe tea = new Recipe();
 		when(recipeRepo.save(tea)).thenReturn(tea);
-		
 		//act
 		Recipe actual = controller.create(tea);
-		
 		//assert
 		assertThat(actual).isSameAs(tea);
 		verify(recipeRepo).save(tea);
@@ -54,14 +50,12 @@ public class RecipeApiControllerTests {
 	@Test
 	public void test_delete_returns_recipe_deleted_when_found() {
 		//arrange
-		Recipe bob = new Recipe();
-		when(recipeRepo.findOne(3l)).thenReturn(bob);
-		
+		Recipe tea = new Recipe();
+		when(recipeRepo.findOne(3l)).thenReturn(tea);	
 		//act
 		Recipe actual = controller.delete(3l);
-		
 		//assert
-		assertThat(bob).isSameAs(actual);
+		assertThat(tea).isSameAs(actual);
 		verify(recipeRepo).delete(3l);
 		verify(recipeRepo).findOne(3l);
 		
@@ -71,10 +65,8 @@ public class RecipeApiControllerTests {
 	public void test_that_null_is_returned_when_delete_throws_EmptyResultDataAccess() throws RecipeNotFoundException {
 		//arrange
 		when(recipeRepo.findOne(8l)).thenThrow(new EmptyResultDataAccessException(0));
-		
 		//act
 		Recipe actual = controller.delete(8l);
-		
 		//assert
 		assertThat(actual).isNull();
 		verify(recipeRepo).findOne(8l);
@@ -82,11 +74,12 @@ public class RecipeApiControllerTests {
 	
 	@Test
 	public void test_getOne_returns_one_recipe_returned_by_the_repo() throws RecipeNotFoundException {
+		//arrange
 		Recipe tea = new Recipe();
 		when(recipeRepo.findOne(4l)).thenReturn(tea);
-		
+		//act
 		Recipe actual = controller.getOne(4l);
-		
+		//assert
 		assertThat(actual).isSameAs(tea);
 		verify(recipeRepo).findOne(4l);
 	}
@@ -97,9 +90,7 @@ public class RecipeApiControllerTests {
 			controller.getOne(1);
 			fail("The controller didn't throw the StuffNotFoundException");
 			
-		} catch (RecipeNotFoundException rnfe) {
-			
-		}
+		} catch (RecipeNotFoundException rnfe) {}
 	}
 	
 	@Test
@@ -107,14 +98,11 @@ public class RecipeApiControllerTests {
 		//arange
 		Recipe tea = new Recipe();
 		tea.setId(99l);
-		when(recipeRepo.save(tea)).thenReturn(tea);	
-		
+		when(recipeRepo.save(tea)).thenReturn(tea);		
 		Recipe actual = controller.create(tea);
 		actual.setId(99l);
-		
 		//act
 		actual = controller.update(tea, 100l);
-		
 		//assert
 		assertThat(actual.getId()).isEqualTo(100);
 	}
@@ -127,18 +115,14 @@ public class RecipeApiControllerTests {
 		recipes.add(new Recipe());
 		recipes.add(new Recipe());
 		String test1 = null;
-		
 		when(recipeRepo.findAll()).thenReturn(recipes);
-	
 		//act
 		List<Recipe> actual = controller.getAll(test1);
-		
 		//assert
 		assertThat(actual.size()).isEqualTo(2);
 		assertThat(actual.get(0)).isSameAs(recipes.get(0));
-		verify(recipeRepo).findAll(); //verifying this method even got called
+		verify(recipeRepo).findAll(); 
 	}
-	
 	
 	@Test
 	public void test_getAll_returns_all_recipes_returned_by_the_repo_if_containing_partial_string() {
@@ -147,18 +131,12 @@ public class RecipeApiControllerTests {
 		recipes.add(new Recipe("lasagna", "A layered pasta with tomato sauce", 74));
 		recipes.add(new Recipe("lalala", "A layered pasta with tomato sauce", 77));
 		String test1 = "la";
-		
 		when(recipeRepo.findByTitleContaining(test1)).thenReturn(recipes);
-	
 		//act
 		List<Recipe> actual = controller.getAll(test1);
-		
 		//assert
 		assertThat(actual.size()).isEqualTo(2);
 		assertThat(actual.get(0)).isSameAs(recipes.get(0));
-		verify(recipeRepo).findByTitleContaining(test1); //verifying this method even got called
-		
-	}
-	
-	
+		verify(recipeRepo).findByTitleContaining(test1); 
+	}	
 }
