@@ -3,6 +3,7 @@ package com.libertymutual.goforcode.penneForYourThoughts.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,10 +40,10 @@ public class Recipe {
 	
 	//need mappings
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
-	private Set<Ingredient> ingredients;
+	private ArrayList<Ingredient> ingredients;
 	
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
-	private Set<Instruction> instructions;
+	private ArrayList<Instruction> instructions;
 	
 	public Recipe() {}
 	
@@ -54,14 +55,14 @@ public class Recipe {
 	
 	public void addInstruction(Instruction instruction) {
 		if(instructions == null) {
-			instructions = new HashSet<Instruction>();
+			instructions = new ArrayList<Instruction>();
 		}
 		instructions.add(instruction);
 	}
 
 	public void addIngredient(Ingredient ingredient) {
 		if(ingredients == null) {
-			ingredients = new HashSet<Ingredient>();
+			ingredients = new ArrayList<Ingredient>();
 		}
 		ingredients.add(ingredient);
 	}
@@ -98,19 +99,19 @@ public class Recipe {
 		this.minutes = minutes;
 	}
 
-	public Set<Ingredient> getIngredients() {
+	public ArrayList<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(Set<Ingredient> ingredients) {
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
-	public Set<Instruction> getInstructions() {
+	public ArrayList<Instruction> getInstructions() {
 		return instructions;
 	}
 
-	public void setInstructions(Set<Instruction> instructions) {
+	public void setInstructions(ArrayList<Instruction> instructions) {
 		this.instructions = instructions;
 	}
 	

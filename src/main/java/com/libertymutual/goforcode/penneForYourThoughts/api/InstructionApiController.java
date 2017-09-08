@@ -31,7 +31,7 @@ public class InstructionApiController {
 	}
 	
 	@PostMapping("")
-	public Recipe createIngredientForARecipe(@PathVariable long id, @RequestBody Instruction instruction) {
+	public Recipe createInstructionForARecipe(@PathVariable long id, @RequestBody Instruction instruction) {
 		Recipe recipe = recipeRepo.findOne(id);
 		instruction.setRecipe(recipe);
 		

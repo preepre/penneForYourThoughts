@@ -21,6 +21,7 @@ import com.libertymutual.goforcode.penneForYourThoughts.api.IngredientApiControl
 import com.libertymutual.goforcode.penneForYourThoughts.api.InstructionApiController;
 import com.libertymutual.goforcode.penneForYourThoughts.api.RecipeNotFoundException;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
+import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
 
 public class InstructionApiControllerTests {
 
@@ -38,13 +39,13 @@ public class InstructionApiControllerTests {
 	}
 	
 	@Test
-	public void test_ingredient_gets_created_and_added_to_repo() {
-		Ingredient ingredient = new Ingredient();
+	public void test_instruction_gets_created_and_added_to_repo() {
+		Instruction instruction = new Instruction();
 		Recipe recipe = new Recipe();
-		when(ingredientRepo.save(ingredient)).thenReturn(ingredient);
+		when(instructionRepo.save(instruction)).thenReturn(instruction);
 		when(recipeRepo.findOne(1l)).thenReturn(recipe);
 		
-		Recipe actual = controller.createIngredientForARecipe(1l, ingredient);
+		Recipe actual = controller.createInstructionForARecipe(1l, instruction);
 		
 		assertThat(recipe).isSameAs(actual);
 		
@@ -52,47 +53,28 @@ public class InstructionApiControllerTests {
 	
 	@Test
 	public void test_ingredient_gets_deleted_from_repo() {
-		Ingredient ingredient = new Ingredient();
-		when(ingredientRepo.findOne(2l)).thenReturn(ingredient);
+		Instruction instruction = new Instruction();
+		when(instructionRepo.findOne(2l)).thenReturn(instruction);
 		
-		Ingredient actual = controller.deleteIngredientForARecipe(2l);
+		Instruction actual = controller.delete(2l);
 		
-		assertThat(ingredient).isSameAs(actual);
-		verify(ingredientRepo).delete(2l);
-		verify(ingredientRepo).findOne(2l);
+		assertThat(instruction).isSameAs(actual);
+		verify(instructionRepo).delete(2l);
+		verify(instructionRepo).findOne(2l);
 		
 	}
 	
 	@Test
 	public void test_that_null_is_returned_when_delete_throws_EmptyResultDataAccess() throws RecipeNotFoundException {
 		//arrange
-		when(ingredientRepo.findOne(8l)).thenThrow(new EmptyResultDataAccessException(0));
+		when(instructionRepo.findOne(8l)).thenThrow(new EmptyResultDataAccessException(0));
 		
 		//act
-		Ingredient actual = controller.deleteIngredientForARecipe(8l);
+		Instruction actual = controller.delete(8l);
 		
 		//assert
 		assertThat(actual).isNull();
-		verify(ingredientRepo).findOne(8l);
+		verify(instructionRepo).findOne(8l);
 	}
-	
-	@Test
-	public void test_getAll_returns_all_ingredients_for_specified_recipe() {
-		// arrange
-		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-		ingredients.add(new Ingredient());
-		ingredients.add(new Ingredient());
-		
-		when(ingredientRepo.findAll()).thenReturn(ingredients);
-	
-		//act
-		List<Ingredient> actual = controller.getAll();
-		
-		//assert
-		assertThat(actual.size()).isEqualTo(2);
-		assertThat(actual.get(0)).isSameAs(ingredients.get(0));
-		verify(ingredientRepo).findAll(); //verifying this method even got called
-	}
-	
 	
 }
