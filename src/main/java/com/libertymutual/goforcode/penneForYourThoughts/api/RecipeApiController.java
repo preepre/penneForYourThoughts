@@ -41,21 +41,14 @@ public class RecipeApiController {
 	// Get all recipes
 	@GetMapping("")
 	public List<Recipe> getAll(String partialTitle) {
-		
 		List<Recipe> returnList;
-		
 		if(partialTitle != null) {
-			returnList = recipeRepo.findByTitleContaining(partialTitle);
-			
+			returnList = recipeRepo.findByTitleContaining(partialTitle);	
 		}
 		else {
-			returnList = recipeRepo.findAll();
-			
+			returnList = recipeRepo.findAll();	
 		}
-		
 		return returnList;
-
-
 	}
 
 	// Get recipe by id
