@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
+import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
@@ -63,4 +65,16 @@ public class IngredientApiController {
 			return null;
 		}
 	}
+	
+	@PutMapping("{ing_id}")
+    public Ingredient updateIngredient(@RequestBody Ingredient ingredient, @PathVariable long ing_id, @PathVariable long id) {
+		Recipe recipe = recipeRepo.findOne(id);
+		ingredient.setRecipe(recipe);
+		
+		ingredient.setId(ing_id);
+		ingredientRepo.save(ingredient);
+		recipeRepo.save(recipe);	
+
+		return ingredient;
+    }
 }

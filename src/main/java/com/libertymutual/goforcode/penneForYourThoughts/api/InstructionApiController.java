@@ -4,6 +4,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +51,18 @@ public class InstructionApiController {
 			return null;
 		}
 	} 
+	
+	@PutMapping("{ins_id}")
+    public Instruction updateInstruction(@RequestBody Instruction instruction, @PathVariable long ins_id, @PathVariable long id) {
+		Recipe recipe = recipeRepo.findOne(id);
+		instruction.setRecipe(recipe);
+		
+		instruction.setId(ins_id);
+		instructionRepo.save(instruction);
+		recipeRepo.save(recipe);	
+
+		return instruction;
+    }
 	
 	
 }
