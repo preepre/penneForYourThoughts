@@ -1,17 +1,12 @@
 package com.libertymutual.goforcode.penneForYourThoughts.api;
 
-import java.util.List;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
@@ -40,11 +35,12 @@ public class IngredientApiController {
 		return recipe;
 	}
 
+	/* This method does not work correctly. Tania will fix this OPTIONAL method.
 	// Get all ingredients for a recipe
 	@GetMapping("")
 	public List<Ingredient> getAll() {
 		return ingredientRepo.findAll();
-	}
+	}*/
 
 	@DeleteMapping("{ing_id}")
 	public Ingredient deleteIngredientForARecipe(@PathVariable long ing_id) {

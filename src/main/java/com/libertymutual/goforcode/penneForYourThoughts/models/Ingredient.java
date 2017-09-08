@@ -1,14 +1,9 @@
 package com.libertymutual.goforcode.penneForYourThoughts.models;
 
 import javax.persistence.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
@@ -26,9 +21,6 @@ public class Ingredient {
 	@Column (length=75, nullable=false)
 	private String unitOfMeasure;
 	
-	//@JsonIgnore
-	//private Set<Movie> movies;
-	
 	@Column (length=10)
 	private double quantity;
 	
@@ -44,6 +36,7 @@ public class Ingredient {
 
 	// GETTERS AND SETTERS
 	
+	@JsonIgnore
 	@ManyToOne
 	private Recipe recipe;
 

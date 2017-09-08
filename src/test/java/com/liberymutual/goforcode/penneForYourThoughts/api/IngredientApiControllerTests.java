@@ -2,9 +2,6 @@ package com.liberymutual.goforcode.penneForYourThoughts.api;
 
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
@@ -71,6 +68,7 @@ public class IngredientApiControllerTests {
 		verify(ingredientRepo).findOne(8l);
 	}
 	
+	/* THIS IS A TEST FOR AN OPTIONAL METHOD. PLEASE IGNORE.
 	@Test
 	public void test_getAll_returns_all_ingredients_for_specified_recipe() {
 		// arrange
@@ -87,7 +85,5 @@ public class IngredientApiControllerTests {
 		assertThat(actual.size()).isEqualTo(2);
 		assertThat(actual.get(0)).isSameAs(ingredients.get(0));
 		verify(ingredientRepo).findAll(); //verifying this method even got called
-	}
-	
-	
+	} */
 }

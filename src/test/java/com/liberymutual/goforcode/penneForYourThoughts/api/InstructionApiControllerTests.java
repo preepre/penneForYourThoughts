@@ -2,38 +2,27 @@ package com.liberymutual.goforcode.penneForYourThoughts.api;
 
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 import com.libertymutual.goforcode.penneForYourThoughts.models.Recipe;
-import com.libertymutual.goforcode.penneForYourThoughts.repositories.IngredientRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.InstructionRepository;
 import com.libertymutual.goforcode.penneForYourThoughts.repositories.RecipeRepository;
-
-
-import com.libertymutual.goforcode.penneForYourThoughts.api.IngredientApiController;
 import com.libertymutual.goforcode.penneForYourThoughts.api.InstructionApiController;
 import com.libertymutual.goforcode.penneForYourThoughts.api.RecipeNotFoundException;
-import com.libertymutual.goforcode.penneForYourThoughts.models.Ingredient;
 import com.libertymutual.goforcode.penneForYourThoughts.models.Instruction;
 
 public class InstructionApiControllerTests {
 
 	private RecipeRepository recipeRepo;
-	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
 	private InstructionApiController controller;
 	
 	@Before
 	public void setUp() {
 		recipeRepo = mock(RecipeRepository.class);
-		ingredientRepo = mock(IngredientRepository.class);
 		instructionRepo = mock(InstructionRepository.class);
 		controller = new InstructionApiController(recipeRepo, instructionRepo);
 	}

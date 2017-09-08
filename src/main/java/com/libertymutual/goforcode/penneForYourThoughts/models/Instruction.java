@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
@@ -26,6 +27,7 @@ public class Instruction {
 	private String step;
 	
 	// GETTERS AND SETTERS
+	@JsonIgnore
 	@ManyToOne
 	private Recipe recipe;
 
