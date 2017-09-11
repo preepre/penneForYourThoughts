@@ -110,7 +110,7 @@ $(document).on('submit', '.delete-ingredients-form', function (e) {
 	$.ajax(this.action, {type: 'DELETE' })
 		.done(() => {
 			$(this)
-			.closest('li')
+			
 			.remove();
 		})
 		.fail(error => console.error(error));
@@ -123,7 +123,7 @@ $(document).on('submit', '.delete-instructions-form', function (e) {
 	$.ajax(this.action, {type: 'DELETE' })
 		.done(() => {
 			$(this)
-			.closest('li')
+			
 			.remove();
 		})
 		.fail(error => console.error(error));
@@ -180,8 +180,8 @@ $(document).on('submit', '#create-ingredients-form', function(e){
 	};
 	
 	$.ajax(this.action, ajaxOptions)
-	.done(function (recipe){
-		//console.log(data);
+	.done(function (data){
+		fillInDetails(data);
 		
 	})
 	
@@ -207,8 +207,8 @@ $(document).on('submit', '#create-instructions-form', function(e){
 	};
 	
 	$.ajax(this.action, ajaxOptions)
-	.done(function (recipe){
-		//console.log(data);
+	.done(function (data){
+		fillInDetails(data);
 		
 	})
 	
