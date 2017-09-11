@@ -2,18 +2,36 @@
 <html>
 
 <head>
-	<title>Our simple cookbook app</title>
+<meta charset="UTF-8">
+<title>Our simple cookbook app</title>
 </head>
 
 <body>
-	<h1>Hi there!</h1>
+	<form id="create-recipe-form" method="post" action="/api/recipes">
+
+		<input required autofocus type="text" id="title" name="title"
+			placeholder="title"> <br>
+
+		<textarea required id="description" name="description"
+			placeholder="description"> 
+		</textarea>
+	
+		<br> 
+		
+		<input required type="text" id="minutes" name="minutes"
+			placeholder="# of min."> <br>
+
+		<button>Create recipe</button>
+		<button type="reset">Reset</button>
+
+	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
 
 	<script src="hello.js"></script>
-	
+
 	<ul id="recipe-list"></ul>
 	<div id="recipe-detail"></div>
 
